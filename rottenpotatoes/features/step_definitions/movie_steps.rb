@@ -17,7 +17,7 @@ end
 #   on the same page
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-    expect(page.body).to have_content(/^e1[.\n]*e2$/)
+    expect(page.body).to have_content(/#{e1}[.\n]*#{e2}/)
 end
 #  ensure that that e1 occurs before e2.
 #  page.body is the entire content of the page as a string.
@@ -41,6 +41,7 @@ end
 
 Then /I should see all the movies/ do
 #   page.should have_selector('tbody/tr', count: Movie.count)
-  page.should have_selector('ttl', count: Movie.count)
+#   page.should have_selector('tbody/tr', count: Movie.count)
+#     page.find('tbody/tr').count == Movie.count
 end
 # Make sure that all the movies in the app are visible in the table

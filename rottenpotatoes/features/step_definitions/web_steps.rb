@@ -113,7 +113,7 @@ end
 
 # part 2.3 - pending combine with should see
 Then /^(?:|I )should see all of the movies$/ do
-  rows = page.all('table tr').size
+  rows = page.all('tbody tr').size
   expect(rows).to eq Movie.all.count
 end
 
