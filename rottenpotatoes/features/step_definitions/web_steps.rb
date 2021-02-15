@@ -87,15 +87,20 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
-  check(field)
+#   check(field)
+    check("ratings[#{field}]")
 end
 
 # part 2.2
-Given /^(?:|I )check the following ratings: "([^"]*)"$/ do |field|.split(", ").each do |r|
-    When %{I check "#{r}"}
+# Given /^(?:|I )check the following ratings: "([^"]*)"$/ do |field|
+#   field.split(", ").each do |r|
+#     When %{I check "#{r}"}
+#   end
+# end
 
 When /^(?:|I )uncheck "([^"]*)"$/ do |field|
-  uncheck(field)
+#   uncheck(field)
+    uncheck("ratings[#{field}]")
 end
 
 When /^(?:|I )choose "([^"]*)"$/ do |field|
@@ -108,8 +113,9 @@ end
 
 # part 2.3 - pending combine with should see
 Then /^(?:|I )should see all of the movies$/ do
-    rows = page.all('table tr').size
-    expect(rows).to eq Movie.all.count
+  rows = page.all('table tr').size
+  expect(rows).to eq Movie.all.count
+end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
   if page.respond_to? :should
